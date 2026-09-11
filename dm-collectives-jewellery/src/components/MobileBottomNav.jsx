@@ -10,7 +10,8 @@ export default function MobileBottomNav() {
     setIsCartOpen,
     setIsWishlistOpen,
     navigateToHome,
-    navigateToCollection
+    navigateToCollection,
+    currentPage
   } = useShop();
 
   const handleWhatsApp = () => {
@@ -24,13 +25,17 @@ export default function MobileBottomNav() {
 
   return (
     <nav className="mobile-bottom-navigation" aria-label="Mobile Bottom Navigation">
-      <button className="bottom-nav-item" onClick={navigateToHome} title="Home">
+      <button
+        className={`bottom-nav-item ${currentPage !== "collection" ? "active" : ""}`}
+        onClick={navigateToHome}
+        title="Home"
+      >
         <Home size={19} />
         <span>Home</span>
       </button>
 
       <button
-        className="bottom-nav-item"
+        className={`bottom-nav-item ${currentPage === "collection" ? "active" : ""}`}
         onClick={() => navigateToCollection("All")}
         title="Explore All Jewellery"
       >
